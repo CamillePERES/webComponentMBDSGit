@@ -1,0 +1,8 @@
+.speedcontrolcontainer label {
+  flex: 1;
+}
+
+img {
+  height: 30px;
+  width: 30px;
+}
