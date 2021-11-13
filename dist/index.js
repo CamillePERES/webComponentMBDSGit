@@ -69,12 +69,6 @@ template.innerHTML = /*html*/`
     align-items: center;
   }
 
-  webaudio-controls{
-    position:absolute;
-    left:731px;
-    top:64px;
-  } 
-
 </style>
 
 <audio id="player" crossorigin="anonymous"></audio>
@@ -96,7 +90,7 @@ template.innerHTML = /*html*/`
 
     <div class="muteButton">
       <button id="mute">
-        <img id ="sound" src="/assets/imgs/volume-mute-solid.png"></img>
+        <img id ="sound" src="/assets/imgs/volume-up-solid.png"></img>
       </button>
 
       <webaudio-knob id="volume" 
@@ -133,49 +127,61 @@ template.innerHTML = /*html*/`
       </label>
   </div>
 
-  <div>
-  <webaudio-knob id="slider60"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
-  <webaudio-knob id="slider170"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
-  <webaudio-knob id="slider350"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
-  <webaudio-knob id="slider1000"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
-  <webaudio-knob id="slider3500"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
-  <webaudio-knob id="slider10k"  
-  src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-  value=0 min=-15 max=15 step=1
-  tooltip="Value: %s"
-  sprites="200"
-  >
-  </webaudio-knob>
+  <div class="slider">
+    <webaudio-knob id="slider60"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+    <webaudio-knob id="slider170"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+    <webaudio-knob id="slider350"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+    <webaudio-knob id="slider1000"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+    <webaudio-knob id="slider3500"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+    <webaudio-knob id="slider10k"  
+    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+    value=0 min=-15 max=15 step=1
+    tooltip="Value: %s"
+    sprites="200"
+    >
+    </webaudio-knob>
+  </div>
+
+  <div class="soundButton">
+    <webaudio-knob id="bass" 
+    src="/assets/imgs/ST_Knob_Torque_100x100_127f.png" 
+    value="5" 
+    min="0" 
+    max="10" 
+    step="0.1" 
+    diameter="69"
+    tooltip="Bass">
+    </webaudio-knob>
   </div>
   
 
@@ -207,6 +213,13 @@ class MyPlayer extends HTMLElement {
     this.volume = this.shadowRoot.querySelector("#volume");
   
     this.slider60 = this.shadowRoot.querySelector("#slider60");
+    this.slider170 = this.shadowRoot.querySelector("#slider170");
+    this.slider350 = this.shadowRoot.querySelector("#slider350");
+    this.slider1000 = this.shadowRoot.querySelector("#slider1000");
+    this.slider3500 = this.shadowRoot.querySelector("#slider3500");
+    this.slider10k = this.shadowRoot.querySelector("#slider10k");
+
+    this.bassKnob = this.shadowRoot.querySelector("#bass");
 
     this.audioCanvas = this.shadowRoot.querySelector("#audioGraph");
     this.audioCanvasContext = this.audioCanvas.getContext("2d");
@@ -294,10 +307,10 @@ class MyPlayer extends HTMLElement {
   toMute(){
     this.player.muted = !this.player.muted;
     if(!this.player.muted){
-      this.shadowRoot.querySelector("#sound").src="/assets/imgs/volume-mute-solid.png";
+      this.shadowRoot.querySelector("#sound").src="/assets/imgs/volume-up-solid.png";
     }
     else{
-      this.shadowRoot.querySelector("#sound").src = "/assets/imgs/volume-up-solid.png";
+      this.shadowRoot.querySelector("#sound").src = "/assets/imgs/volume-mute-solid.png";
     }
   }
 
@@ -437,14 +450,110 @@ class MyPlayer extends HTMLElement {
     this.shadowRoot.querySelector("#slider60").oninput = (event) => {
       this.setGainOfSlider(60,event.target.value)
     }
-
-
+    this.shadowRoot.querySelector("#slider170").oninput = (event) => {
+      this.setGainOfSlider(170,event.target.value)
+    }
+    this.shadowRoot.querySelector("#slider350").oninput = (event) => {
+      this.setGainOfSlider(350,event.target.value)
+    }
+    this.shadowRoot.querySelector("#slider1000").oninput = (event) => {
+      this.setGainOfSlider(1000,event.target.value)
+    }
+    this.shadowRoot.querySelector("#slider3500").oninput = (event) => {
+      this.setGainOfSlider(3500,event.target.value)
+    }
+    this.shadowRoot.querySelector("#slider10k").oninput = (event) => {
+      this.setGainOfSlider(10000,event.target.value)
+    }
   }
 
   setGainOfSlider(key,value){
     var val = parseFloat(value);
     this.mapSlider.get(key).gain.value = val;
   }
+
+  /*
+  function changeBassFilterValue(sliderVal) {
+        // sliderVal is in [0, 10]
+        var value = parseFloat(sliderVal);
+        bassFilter.gain.value = (value-10) * 7;
+        console.log("bass gain set to " + bassFilter.gain.value);
+
+        // update output labels
+        //var output = document.querySelector("#bassFreq");
+        //output.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh slider state
+        //var slider = document.querySelector("#bassFreqSlider");
+        //slider.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh knob state
+        //sliderVal = value / 7 + 10;
+        var knob = document.querySelector("#Knob4");
+        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+    }
+
+    function changeTrebleFilterValue(sliderVal) {
+        // sliderVal is in [0, 10]
+        var value = parseFloat(sliderVal);
+        trebleFilter.gain.value = (value-10) * 10;
+
+        // update output labels
+        //var output = document.querySelector("#trebleFreq");
+        //output.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh slider state
+        //var slider = document.querySelector("#trebleFreqSlider");
+        //slider.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh knob state
+        //sliderVal = value /10 + 10;
+        var knob = document.querySelector("#Knob6");
+        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+    }
+
+    function changePresenceFilterValue(sliderVal) {
+        // sliderVal is in [0, 10]
+        var value = parseFloat(sliderVal);
+        presenceFilter.gain.value = (value-5) * 2;
+        //console.log("set presence freq to " + presenceFilter.frequency.value)
+
+        // update output labels
+        //var output = document.querySelector("#presenceFreq");
+        //output.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh slider state
+        //var slider = document.querySelector("#presenceFreqSlider");
+        //slider.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh knob state
+        var knob = document.querySelector("#Knob8");
+        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+    }
+
+    function changeReverbGain(sliderVal) {
+        // slider val in [0, 10] range
+        // adjust to [0, 1]
+        var value = parseFloat(sliderVal) / 10;
+        reverb.setGain(value);
+
+        // update output labels
+        //var output = document.querySelector("#reverbGainOutput");
+        //output.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh slider state
+        //var slider = document.querySelector("#convolverSlider");
+        //slider.value = parseFloat(sliderVal).toFixed(1);
+
+        // refresh knob state
+        var knob = document.querySelector("#Knob7");
+        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+    }
+
+    function changeReverbImpulse(name) {
+        reverb.loadImpulseByName(name);
+    }
+  */
 
 }
 customElements.define("my-player", MyPlayer);
