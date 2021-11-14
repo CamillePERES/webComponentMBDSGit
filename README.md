@@ -29,10 +29,10 @@
     - Retour au début de la chanson
     - Playlist :
       - Choix entre 3 chansons
-      - Navigation next/previous entre les chansons possibles
+      - Navigation next/previous possible entre les chansons
     - Volume activé/désactivé
     - Barres de décibel G/D
-    -Hébergement Heroku
+    - Hébergement Heroku
   
   #Lien Heroku: 
   
