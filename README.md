@@ -25,6 +25,7 @@
   #Spécificités:  
   
     - Bouton pause/play qui change selon l'état de la chanson
+    - Bouton muet/non-muet qui change quand on appuie dessus
     - Retour au début de la chanson
     - Playlist :
       - Choix entre 3 chansons
