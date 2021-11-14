@@ -157,7 +157,7 @@ template.innerHTML = /*html*/`
     margin-left: 10px;
   }
 
-  .textTreble{
+  .textTreble{*
     display:flex;
     flex-direction:column;
     justify-content: center;
