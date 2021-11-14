@@ -169,6 +169,10 @@ template.innerHTML = /*html*/`
     margin-left: 10px;
   }
 
+  .playlistSelected{
+    color:#00BFFF;
+  }
+
 </style>
 
 <audio id="player" crossorigin="anonymous"></audio>
@@ -179,13 +183,21 @@ template.innerHTML = /*html*/`
   <div class="containerButton">
    <div></div>
     <div class="mainButton">
-      <button id="playBtn">
-        <img id ="play" src="/assets/imgs/play-solid.png"></img>
-      </button>
+      <button id="previous">
+          <img src="/assets/imgs/step-backward-solid.png"></img>
+        </button>
 
-      <button id="back">
-        <img src="/assets/imgs/square-solid.png"></img>
-      </button>
+        <button id="playBtn">
+          <img id ="play" src="/assets/imgs/play-solid.png"></img>
+        </button>
+
+        <button id="next">
+          <img src="/assets/imgs/step-forward-solid.png"></img>
+        </button>
+
+        <button id="back">
+          <img src="/assets/imgs/square-solid.png"></img>
+        </button>
     </div>
 
     <div class="muteButton">
@@ -361,6 +373,8 @@ template.innerHTML = /*html*/`
     </div>
   </div>
 
+  <div id="playlist"></div>
+
 </div>
 
  
@@ -375,6 +389,11 @@ class MyPlayer extends HTMLElement {
   midFilter;
   mapButton = new Map();
   gradient;
+  songs=["https://mainline.i3s.unice.fr/mooc/LaSueur.mp3",
+  "http://mainline.i3s.unice.fr/mooc/horse.mp3",
+  "https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3"
+  ];
+  index;
 
   constructor() {
     super();
@@ -416,6 +435,8 @@ class MyPlayer extends HTMLElement {
 
     this.mute = this.shadowRoot.querySelector("#mute");
 
+    this.playlist = this.shadowRoot.querySelector("#playlist");
+
     this.gradient = this.volumeCanvasContext.createLinearGradient(0,0,0, this.volumeCanvas.height);
     this.gradient.addColorStop(1,'#00FFFF');
     this.gradient.addColorStop(0.75,'#40E0D0');
@@ -425,6 +446,7 @@ class MyPlayer extends HTMLElement {
     this.defineListeners();
     this.listenerSlider();
     this.listenerButton();
+    this.createPlaylist();
   }
 
   defineListeners(){
@@ -474,6 +496,14 @@ class MyPlayer extends HTMLElement {
     this.shadowRoot.querySelector("#back").onclick = (event) => {
       this.backToBeginning();
     }
+
+    this.shadowRoot.querySelector("#next").onclick = (event) => {
+      this.nextSong();
+    }
+
+    this.shadowRoot.querySelector("#previous").onclick = (event) => {
+      this.previousSong();
+    }
     
   }
 
@@ -507,6 +537,31 @@ class MyPlayer extends HTMLElement {
     else{
       this.shadowRoot.querySelector("#sound").src = "/assets/imgs/volume-mute-solid.png";
     }
+  }
+
+  nextSong(){
+    if(this.index+1 > this.songs.length-1){
+      this.index=0;
+    }
+    else{
+      this.index+=1;
+    }
+
+    this.player.src=this.songs[this.index];
+    this.createPlaylist();
+    this.onMusic();
+  }
+  
+  previousSong(){
+    if(this.index-1 < 0){
+      this.index=this.songs.length-1;
+    }
+    else{
+      this.index-=1;
+    }
+    this.player.src=this.songs[this.index];
+    this.createPlaylist();
+    this.onMusic();
   }
 
   inLoop(){
@@ -805,7 +860,28 @@ class MyPlayer extends HTMLElement {
       mid.gain.value = (value-5) * 4;
     var knob = this.shadowRoot.querySelector("#mid");
     knob.setValue(parseFloat(sliderVal).toFixed(1), false);
-}
+  }
+
+  createPlaylist(){
+    this.playlist.innerHTML = "";
+    let i=0;
+    for(let song of this.songs){
+      let el = document.createElement("div");
+      this.playlist.append(el);
+      el.innerHTML = song;
+      el.onclick = () => {
+        this.player.src=song;
+        console.log(song);
+        this.createPlaylist();
+        this.onMusic();
+      }
+      if(this.player.src === song){
+        el.className += "playlistSelected";
+        this.index=i;
+      }
+      i++;
+    }
+  }
 
 }
 customElements.define("my-player", MyPlayer);
