@@ -141,7 +141,6 @@ template.innerHTML = /*html*/`
     align-items: center;
     font-weight: bold;
     color: #191970;
-  }
 
   .textBass{
     display:flex;
