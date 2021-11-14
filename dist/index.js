@@ -40,7 +40,7 @@ template.innerHTML = /*html*/`
   .mainContainer{
     display:flex;
     flex-direction: column;
-    width:400px;
+    width:100%;
     height:50px;
   }
 
@@ -48,6 +48,7 @@ template.innerHTML = /*html*/`
     display:flex;
     flex-direction:row;
     justify-content: space-between;
+
     width:400px;
     height:50px;
     background-color:#dff2ff;
@@ -70,15 +71,11 @@ template.innerHTML = /*html*/`
 
   .sliderContainer{
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     background-color:#dff2ff;
     border: 1px solid black;
-  }
-
-  #loop{
-    margin-left: 10px;
   }
 
   .sl60{
@@ -131,11 +128,19 @@ template.innerHTML = /*html*/`
   .slider{
     display:flex;
     flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #191970;
   }
 
   .soundButton{
     display:flex;
     flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #191970;
   }
 
   .textBass{
@@ -170,211 +175,357 @@ template.innerHTML = /*html*/`
   }
 
   .playlistSelected{
-    color:#00BFFF;
+    color:white;
+  }
+
+  #playlist{
+    color:#000080;
+    height:90%;
+  }
+
+  .canvasContainer{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #volumeMeter{
+    margin-left:10px;
+  }
+  
+  h2{
+    text-align:center;
+    background: -webkit-linear-gradient(left, #87CEFA, #eee, #87CEFA);
+    background: -moz-linear-gradient(left, #87CEFA, #eee, #87CEFA);
+    background: -ms-linear-gradient(left, #87CEFA, #eee, #87CEFA);
+    background: -o-linear-gradient(left, #87CEFA, #eee, #87CEFA);
+    color: #191970;
+    border-radius: 30px;
+    border:1px solid black;
+  }
+
+  .toolbar{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .titleToolbar{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .progress{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttonLoop{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #loop{
+    background-color:grey;
+  }
+
+  .visualization{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titleVisu{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .graphicContent{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .allPlaylis{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h3{
+    background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
+    background-color: mediumspringgreen;
+    background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
+    background-repeat: repeat;
+    border-radius: 30px;
+    text-align:center;
+    color: #006400;
+    border:1px solid black;
+  }
+
+  .frequency{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sliderButton{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
   }
 
 </style>
 
 <audio id="player" crossorigin="anonymous"></audio>
 
-<br>
 <div class="mainContainer">
-
-  <div class="containerButton">
-   <div></div>
-    <div class="mainButton">
-      <button id="previous">
+  <div class="toolbar">
+    <div class="titleToolbar">
+     <h2>Toolbar</h2>
+    </div>
+    <div class="containerButton">
+      <div class="buttonLoop">
+        <button id="loop">
+          <img src="/assets/imgs/undo-alt-solid.png"></img>
+        </button>    
+      </div>
+      <div class="mainButton">
+        <button id="previous">
           <img src="/assets/imgs/step-backward-solid.png"></img>
         </button>
-
         <button id="playBtn">
           <img id ="play" src="/assets/imgs/play-solid.png"></img>
         </button>
-
         <button id="next">
           <img src="/assets/imgs/step-forward-solid.png"></img>
         </button>
-
         <button id="back">
           <img src="/assets/imgs/square-solid.png"></img>
         </button>
+      </div>
+      <div class="muteButton">
+        <button id="mute">
+          <img id ="sound" src="/assets/imgs/volume-up-solid.png"></img>
+        </button>
+        <webaudio-knob id="volume" 
+        src="/assets/imgs/MiniMoog_Main.png"
+        value=0.5 min=0 max=1 step=0.01
+        diameter="50" 
+        tooltip="Volume: %s">
+        </webaudio-knob>
+      </div>
     </div>
 
-    <div class="muteButton">
-      <button id="mute">
-        <img id ="sound" src="/assets/imgs/volume-up-solid.png"></img>
-      </button>
+    <div class="sliderContainer">
+      <div class="progress">
+        <label> Progression
+          <input id="progress" type="range" value=0>
+        </label>
+        <span id="currentTime"></span> /
+        <span id="duration"></span>
+      </div>
 
-      <webaudio-knob id="volume" 
-      src="/assets/imgs/MiniMoog_Main.png"
-      value=0.5 min=0 max=1 step=0.01
-      diameter="50" 
-      tooltip="Volume: %s">
-      </webaudio-knob>
-    </div>
-  </div>
-  
-  <div class="canvasContainer">
-    <canvas id="audioGraph" width="400"></canvas>
-    <canvas id="volumeMeter" width="51" height="150px"></canvas>
-  </div>
-  
-  <canvas id="audioFreq" width="400" height="200"></canvas>
-  
-  <div class="sliderContainer">
-    <label> Progression
-      <input id="progress" type="range" value=0>
-    </label>
-    <span id="currentTime"></span> /
-    <span id="duration"></span>
-
-    <button id="loop">
-      <img src="/assets/imgs/undo-alt-solid.png"></img>
-    </button>    
-  </div>
-
-  <div>
-    <label>Speed
-        <input type="range" min="0.5" max="2" step=".25" value="1" id="speed">
-        <span id="displayVolume"></span>
+      <label>Speed
+          <input type="range" min="0.5" max="2" step=".25" value="1" id="speed">
+          <span id="displayVolume"></span>
       </label>
+    </div>
   </div>
 
-  <div class="slider">
-
-    <div class="sl60">
-      <webaudio-knob id="slider60"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
-
-      <span>FREQ60</span>
+  <div class="visualization">
+    <div class="titleVisu">
+      <h2>Graphic visualization</h2>
     </div>
+    <div class="graphicContent">
+      <div class="allPlaylist">
+        <h3>Playlist</h3>
+        <div id="playlist"></div>
+      </div>
 
-    <div class="sl170">
-      <webaudio-knob id="slider170"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
+      <div class="firstCanvas">
+        <h3>Wave Form Graphic</h3>
+        <div class="canvasContainer">
+          <canvas id="audioGraph" width="400"></canvas>
+          <canvas id="volumeMeter" width="51" height="150px"></canvas>
+        </div>
+      </div>
+
+      <div class="secondCanvas">
+        <h3>Barplot Graphic</h3>
+        <div class="canvas">
+          <canvas id="audioFreq" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="frequency">
+    <div class="titleFrequency">
+      <h2>Frequency filter</h2>
+    </div>
+    <div class="sliderButton">
+      <div class="slider">
+        <div class="sl60">
+          <webaudio-knob id="slider60"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+          <span>FREQ60</span>
+        </div>
+
+        <div class="sl170">
+          <webaudio-knob id="slider170"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+          
+          <span>FREQ170</span>
+        </div>
+
+        <div class="sl350">
+          <webaudio-knob id="slider350"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+
+          <span>FREQ350</span>
+        </div>
+
+        <div class="sl1000">
+          <webaudio-knob id="slider1000"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+
+          <span>FREQ1000</span>
+        </div>
+    
+        <div class="sl3500">
+          <webaudio-knob id="slider3500"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+
+          <span>FREQ3500</span>
+        </div>
+
+        <div class="sl10k">
+          <webaudio-knob id="slider10k"  
+          src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+          value=0 min=-15 max=15 step=1
+          tooltip="Value: %s"
+          sprites="200"
+          >
+          </webaudio-knob>
+
+          <span>FREQ10000</span>
+        </div>
+      </div>
+
+      <div class="soundButton">
+        <div class="textBass">
+          <webaudio-knob id="bass" 
+          src="/assets/imgs/KNB_metal_indigo_L.png" 
+          value="5" 
+          min="0" 
+          max="10" 
+          step="0.1" 
+          diameter="69"
+          tooltip="Bass: %s">
+          </webaudio-knob>
+
+          <span>Bass</span>
+        </div>
       
-      <span>FREQ170</span>
-    </div>
+        <div class="textPresence">
+          <webaudio-knob id="presence" 
+          src="/assets/imgs/KNB_metal_indigo_L.png" 
+          value="5" 
+          min="0" 
+          max="10" 
+          step="0.1" 
+          diameter="69"
+          tooltip="Presence: %s">
+          </webaudio-knob>
 
-    <div class="sl350">
-      <webaudio-knob id="slider350"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
+          <span>Presence</span>
+        </div>
 
-      <span>FREQ350</span>
-    </div>
+        <div class="textTreble">
+          <webaudio-knob id="treble" 
+          src="/assets/imgs/KNB_metal_indigo_L.png" 
+          value="5" 
+          min="0" 
+          max="10" 
+          step="0.1" 
+          diameter="69"
+          tooltip="Treble: %s">
+          </webaudio-knob>
 
-    <div class="sl1000">
-      <webaudio-knob id="slider1000"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
+          <span>Treble</span>
+        </div>
 
-      <span>FREQ1000</span>
+        <div class="textMid">
+          <webaudio-knob id="mid" 
+          src="/assets/imgs/KNB_metal_indigo_L.png" 
+          value="5" 
+          min="0" 
+          max="10" 
+          step="0.1" 
+          diameter="69"
+          tooltip="Mid: %s">
+          </webaudio-knob>
+
+          <span>Mid</span>
+        </div>
+      </div>
     </div>
     
-    <div class="sl3500">
-      <webaudio-knob id="slider3500"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
 
-      <span>FREQ3500</span>
-    </div>
+    
 
-    <div class="sl10k">
-      <webaudio-knob id="slider10k"  
-      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-      value=0 min=-15 max=15 step=1
-      tooltip="Value: %s"
-      sprites="200"
-      >
-      </webaudio-knob>
 
-      <span>FREQ10000</span>
-    </div>
   </div>
+  
 
-  <div class="soundButton">
-    <div class="textBass">
-      <webaudio-knob id="bass" 
-      src="/assets/imgs/KNB_metal_indigo_L.png" 
-      value="5" 
-      min="0" 
-      max="10" 
-      step="0.1" 
-      diameter="69"
-      tooltip="Bass: %s">
-      </webaudio-knob>
-
-      <span>Bass</span>
-    </div>
-      
-    <div class="textPresence">
-      <webaudio-knob id="presence" 
-      src="/assets/imgs/KNB_metal_indigo_L.png" 
-      value="5" 
-      min="0" 
-      max="10" 
-      step="0.1" 
-      diameter="69"
-      tooltip="Presence: %s">
-      </webaudio-knob>
-
-      <span>Presence</span>
-    </div>
-
-    <div class="textTreble">
-      <webaudio-knob id="treble" 
-      src="/assets/imgs/KNB_metal_indigo_L.png" 
-      value="5" 
-      min="0" 
-      max="10" 
-      step="0.1" 
-      diameter="69"
-      tooltip="Treble: %s">
-      </webaudio-knob>
-
-      <span>Treble</span>
-    </div>
-
-    <div class="textMid">
-      <webaudio-knob id="mid" 
-      src="/assets/imgs/KNB_metal_indigo_L.png" 
-      value="5" 
-      min="0" 
-      max="10" 
-      step="0.1" 
-      diameter="69"
-      tooltip="Mid: %s">
-      </webaudio-knob>
-
-      <span>Mid</span>
-    </div>
-  </div>
-
-  <div id="playlist"></div>
-
+  
+  
+  
 </div>
 
  
@@ -411,6 +562,7 @@ class MyPlayer extends HTMLElement {
     this.player.src = this.getAttribute("src");
 
     this.volume = this.shadowRoot.querySelector("#volume");
+    this.loop = this.shadowRoot.querySelector("#loop");
   
     this.slider60 = this.shadowRoot.querySelector("#slider60");
     this.slider170 = this.shadowRoot.querySelector("#slider170");
@@ -551,7 +703,7 @@ class MyPlayer extends HTMLElement {
     this.createPlaylist();
     this.onMusic();
   }
-  
+
   previousSong(){
     if(this.index-1 < 0){
       this.index=this.songs.length-1;
@@ -566,6 +718,12 @@ class MyPlayer extends HTMLElement {
 
   inLoop(){
     this.player.loop = !this.player.loop;
+    if(!this.player.loop){
+      this.loop.style.backgroundColor = "grey";
+    }
+    else{
+      this.loop.style.backgroundColor = "#4682B4";
+    }
   }
 
   convertElapsedTime(inputSeconds){
@@ -716,6 +874,9 @@ class MyPlayer extends HTMLElement {
   drawVolume(){
     this.volumeCanvasContext.clearRect(0,0,this.volumeCanvas.width,this.volumeCanvas.height)
     this.volumeCanvasContext.save();
+
+    this.volumeCanvasContext.fillStyle = 'rgb(223, 242, 255)';
+    this.volumeCanvasContext.fillRect(0, 0, this.volumeCanvas.width,this.volumeCanvas.height);
 
     this.volumeCanvasContext.fillStyle=this.gradient;
 
