@@ -18,6 +18,10 @@ template.innerHTML = /*html*/`
     border:1px solid black;
   }
 
+  #volumeMeter{
+    border:1px solid black;
+  }
+
   #audioFreq{
     border:1px solid black;
   }
@@ -25,7 +29,7 @@ template.innerHTML = /*html*/`
   button {
     transition-duration: 0.4s;
     background-color: #dff2ff;
-    border: 1px solid white; 
+    border: 1px solid black; 
   }
 
   button:hover{
@@ -46,6 +50,8 @@ template.innerHTML = /*html*/`
     justify-content: space-between;
     width:400px;
     height:50px;
+    background-color:#dff2ff;
+    border: 1px solid black;
   }
 
   .mainButton{
@@ -57,16 +63,110 @@ template.innerHTML = /*html*/`
 
   .muteButton{
     display:flex;
-    fex-direction:row;
+    flex-direction:row;
     justify-content: center;
     align-items: center;
   }
 
   .sliderContainer{
     display:flex;
-    fex-direction:row;
+    flex-direction:row;
     justify-content: center;
     align-items: center;
+    background-color:#dff2ff;
+    border: 1px solid black;
+  }
+
+  #loop{
+    margin-left: 10px;
+  }
+
+  .sl60{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sl170{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .sl350{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .sl1000{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .sl3500{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .sl10k{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .slider{
+    display:flex;
+    flex-direction:row;
+  }
+
+  .soundButton{
+    display:flex;
+    flex-direction:row;
+  }
+
+  .textBass{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textPresence{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .textTreble{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .textMid{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
   }
 
 </style>
@@ -77,7 +177,7 @@ template.innerHTML = /*html*/`
 <div class="mainContainer">
 
   <div class="containerButton">
-  <div></div>
+   <div></div>
     <div class="mainButton">
       <button id="playBtn">
         <img id ="play" src="/assets/imgs/play-solid.png"></img>
@@ -104,9 +204,10 @@ template.innerHTML = /*html*/`
   
   <div class="canvasContainer">
     <canvas id="audioGraph" width="400"></canvas>
+    <canvas id="volumeMeter" width="51" height="150px"></canvas>
   </div>
   
-  <canvas id="audioFreq" width="400"></canvas>
+  <canvas id="audioFreq" width="400" height="200"></canvas>
   
   <div class="sliderContainer">
     <label> Progression
@@ -128,62 +229,137 @@ template.innerHTML = /*html*/`
   </div>
 
   <div class="slider">
-    <webaudio-knob id="slider60"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
-    <webaudio-knob id="slider170"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
-    <webaudio-knob id="slider350"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
-    <webaudio-knob id="slider1000"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
-    <webaudio-knob id="slider3500"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
-    <webaudio-knob id="slider10k"  
-    src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
-    value=0 min=-15 max=15 step=1
-    tooltip="Value: %s"
-    sprites="200"
-    >
-    </webaudio-knob>
+
+    <div class="sl60">
+      <webaudio-knob id="slider60"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+
+      <span>FREQ60</span>
+    </div>
+
+    <div class="sl170">
+      <webaudio-knob id="slider170"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+      
+      <span>FREQ170</span>
+    </div>
+
+    <div class="sl350">
+      <webaudio-knob id="slider350"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+
+      <span>FREQ350</span>
+    </div>
+
+    <div class="sl1000">
+      <webaudio-knob id="slider1000"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+
+      <span>FREQ1000</span>
+    </div>
+    
+    <div class="sl3500">
+      <webaudio-knob id="slider3500"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+
+      <span>FREQ3500</span>
+    </div>
+
+    <div class="sl10k">
+      <webaudio-knob id="slider10k"  
+      src="/assets/imgs/PC3_EnvFader_03_Blue.png" 
+      value=0 min=-15 max=15 step=1
+      tooltip="Value: %s"
+      sprites="200"
+      >
+      </webaudio-knob>
+
+      <span>FREQ10000</span>
+    </div>
   </div>
 
   <div class="soundButton">
-    <webaudio-knob id="bass" 
-    src="/assets/imgs/ST_Knob_Torque_100x100_127f.png" 
-    value="5" 
-    min="0" 
-    max="10" 
-    step="0.1" 
-    diameter="69"
-    tooltip="Bass">
-    </webaudio-knob>
+    <div class="textBass">
+      <webaudio-knob id="bass" 
+      src="/assets/imgs/KNB_metal_indigo_L.png" 
+      value="5" 
+      min="0" 
+      max="10" 
+      step="0.1" 
+      diameter="69"
+      tooltip="Bass: %s">
+      </webaudio-knob>
+
+      <span>Bass</span>
+    </div>
+      
+    <div class="textPresence">
+      <webaudio-knob id="presence" 
+      src="/assets/imgs/KNB_metal_indigo_L.png" 
+      value="5" 
+      min="0" 
+      max="10" 
+      step="0.1" 
+      diameter="69"
+      tooltip="Presence: %s">
+      </webaudio-knob>
+
+      <span>Presence</span>
+    </div>
+
+    <div class="textTreble">
+      <webaudio-knob id="treble" 
+      src="/assets/imgs/KNB_metal_indigo_L.png" 
+      value="5" 
+      min="0" 
+      max="10" 
+      step="0.1" 
+      diameter="69"
+      tooltip="Treble: %s">
+      </webaudio-knob>
+
+      <span>Treble</span>
+    </div>
+
+    <div class="textMid">
+      <webaudio-knob id="mid" 
+      src="/assets/imgs/KNB_metal_indigo_L.png" 
+      value="5" 
+      min="0" 
+      max="10" 
+      step="0.1" 
+      diameter="69"
+      tooltip="Mid: %s">
+      </webaudio-knob>
+
+      <span>Mid</span>
+    </div>
   </div>
-  
 
 </div>
 
@@ -192,8 +368,13 @@ template.innerHTML = /*html*/`
 
 class MyPlayer extends HTMLElement {
 
-  fftSize = 512;
   mapSlider = new Map();
+  bassFilter;
+  trebleFilter;
+  presenceFilter;
+  midFilter;
+  mapButton = new Map();
+  gradient;
 
   constructor() {
     super();
@@ -220,6 +401,9 @@ class MyPlayer extends HTMLElement {
     this.slider10k = this.shadowRoot.querySelector("#slider10k");
 
     this.bassKnob = this.shadowRoot.querySelector("#bass");
+    this.trebleKnob = this.shadowRoot.querySelector("#treble");
+    this.midbKnob = this.shadowRoot.querySelector("#mid");
+    this.presenceKnob = this.shadowRoot.querySelector("#presence");
 
     this.audioCanvas = this.shadowRoot.querySelector("#audioGraph");
     this.audioCanvasContext = this.audioCanvas.getContext("2d");
@@ -227,10 +411,20 @@ class MyPlayer extends HTMLElement {
     this.freqCanvas = this.shadowRoot.querySelector("#audioFreq");
     this.freqCanvasContext = this.freqCanvas.getContext("2d");
 
+    this.volumeCanvas = this.shadowRoot.querySelector("#volumeMeter");
+    this.volumeCanvasContext = this.volumeCanvas.getContext("2d");
+
     this.mute = this.shadowRoot.querySelector("#mute");
+
+    this.gradient = this.volumeCanvasContext.createLinearGradient(0,0,0, this.volumeCanvas.height);
+    this.gradient.addColorStop(1,'#00FFFF');
+    this.gradient.addColorStop(0.75,'#40E0D0');
+    this.gradient.addColorStop(0.25,'#48D1CC');
+    this.gradient.addColorStop(0,'#00CED1');
 
     this.defineListeners();
     this.listenerSlider();
+    this.listenerButton();
   }
 
   defineListeners(){
@@ -272,6 +466,7 @@ class MyPlayer extends HTMLElement {
         requestAnimationFrame(() => {
           this.drawAudio();
           this.drawFrequenceAudio();
+          this.drawVolume();
         });
       }
     }
@@ -345,19 +540,44 @@ class MyPlayer extends HTMLElement {
 
     let source = this.audioContext.createMediaElementSource(this.player);
     this.analyser = this.audioContext.createAnalyser();
-    this.buildSlider(this.audioContext);
+    this.stereoPanner = this.audioContext.createStereoPanner();
+    source.connect(this.stereoPanner);
 
-    this.analyser.fftSize = this.fftSize;
+    this.buildSlider(this.audioContext);
+    this.buildButton(this.audioContext);
+
+    this.analyser.fftSize = 2048;
     this.sizeBuffer = this.analyser.frequencyBinCount;
     this.dataTable = new Uint8Array(this.sizeBuffer);
 
+
     let currentNode = source;
+    for(let button of this.mapButton.values()){
+      currentNode.connect(button);
+      currentNode=button;
+    }
     for(let filter of this.mapSlider.values()){
       currentNode.connect(filter);
       currentNode = filter;
     }
-    currentNode.connect(this.analyser);
+    currentNode.connect(this.stereoPanner);
+    this.stereoPanner.connect(this.analyser);
     this.analyser.connect(this.audioContext.destination);
+
+    this.analyserLeft = this.audioContext.createAnalyser();
+    this.analyserLeft.fftSize = 256;
+    this.sizeBufferLeft = this.analyserLeft.frequencyBinCount;
+    this.dataTableLeft = new Uint8Array(this.sizeBufferLeft);
+
+    this.analyserRight = this.audioContext.createAnalyser();
+    this.analyserRight.fftSize = 256;
+    this.sizeBufferRight = this.analyserRight.frequencyBinCount;
+    this.dataTableRight = new Uint8Array(this.sizeBufferRight);
+
+    this.splitter = this.audioContext.createChannelSplitter();
+    this.stereoPanner.connect(this.splitter);
+    this.splitter.connect(this.analyserLeft,0,0);
+    this.splitter.connect(this.analyserRight,1,0);
   }
 
   buildSlider(context){
@@ -371,6 +591,33 @@ class MyPlayer extends HTMLElement {
       slider.gain.value = 0;
       this.mapSlider.set(val, slider);
     })
+  }
+
+  buildButton(context){
+    this.bassFilter=context.createBiquadFilter();
+    this.bassFilter.frequency.value = 100;
+    this.bassFilter.type = "lowshelf";
+    this.bassFilter.Q.value = 0.7071;
+    this.mapButton.set("bass",this.bassFilter);
+    console.log(this.bassFilter)
+
+    this.trebleFilter=context.createBiquadFilter();
+    this.trebleFilter.frequency.value = 6500;
+    this.trebleFilter.type = "highshelf";
+    this.trebleFilter.Q.value = 0.7071;
+    this.mapButton.set("treble",this.trebleFilter);
+
+    this.presenceFilter=context.createBiquadFilter();
+    this.presenceFilter.frequency.value = 3900;
+    this.presenceFilter.type = "peaking";
+    this.presenceFilter.Q.value = 0.7071;
+    this.mapButton.set("presence",this.presenceFilter);
+
+    this.midFilter = context.createBiquadFilter();
+    this.midFilter.frequency.value = 1700;
+    this.midFilter.type = "peaking";
+    this.midFilter.Q.value = 0.7071;
+    this.mapButton.set("mid",this.midFilter);
   }
 
   drawAudio(){
@@ -411,6 +658,41 @@ class MyPlayer extends HTMLElement {
     });
   }
 
+  drawVolume(){
+    this.volumeCanvasContext.clearRect(0,0,this.volumeCanvas.width,this.volumeCanvas.height)
+    this.volumeCanvasContext.save();
+
+    this.volumeCanvasContext.fillStyle=this.gradient;
+
+    this.analyserLeft.getByteFrequencyData(this.dataTableLeft);
+    var averageLeft = this.getAverageVolume(this.dataTableLeft);
+    const sizeHR = this.volumeCanvas.height < averageLeft ? 0 : this.volumeCanvas.height-averageLeft;
+    this.volumeCanvasContext.fillRect(0, sizeHR, 25, this.volumeCanvas.height);
+
+    this.analyserRight.getByteFrequencyData(this.dataTableRight);
+    var averageRight = this.getAverageVolume(this.dataTableRight);
+    const sizeHL = this.volumeCanvas.height < averageRight ? 0 : this.volumeCanvas.height-averageRight;
+    this.volumeCanvasContext.fillRect(26, sizeHL, 25, this.volumeCanvas.height);
+
+    this.volumeCanvasContext.restore();
+
+    requestAnimationFrame(() => {
+      this.drawVolume();
+    });
+  }
+
+  getAverageVolume(array){
+    var values = 0;
+    var average;
+    var length = array.length;
+
+    for (var i = 0; i < length; i++) {
+      values += array[i];
+    }
+    average = values / length;
+    return average;
+  }
+
   drawFrequenceAudio(){
     this.freqCanvasContext.clearRect(0, 0, this.freqCanvas.width, this.freqCanvas.height)
 
@@ -423,7 +705,7 @@ class MyPlayer extends HTMLElement {
     let barHeigth;
     var x=0;
 
-    let heightScale = this.freqCanvas.height / this.fftSize;
+    let heightScale = this.freqCanvas.height / 128;
 
     for(let i = 0; i < this.sizeBuffer; i++) {
       barHeigth = this.dataTable[i];
@@ -467,93 +749,63 @@ class MyPlayer extends HTMLElement {
     }
   }
 
-  setGainOfSlider(key,value){
-    var val = parseFloat(value);
-    this.mapSlider.get(key).gain.value = val;
+  listenerButton(){
+    this.shadowRoot.querySelector("#bass").oninput = (event) => {
+      this.changeBassFilterValue(event.target.value)
+    };
+    this.shadowRoot.querySelector("#treble").oninput = (event) => {
+      this.changeTrebleFilterValue(event.target.value)
+    }
+    this.shadowRoot.querySelector("#presence").oninput = (event) => {
+      this.changePresenceFilterValue(event.target.value)
+    }
+    this.shadowRoot.querySelector("#mid").oninput = (event) => {
+      this.changeMidFilterValue(event.target.value)
+    }
   }
 
-  /*
-  function changeBassFilterValue(sliderVal) {
-        // sliderVal is in [0, 10]
-        var value = parseFloat(sliderVal);
-        bassFilter.gain.value = (value-10) * 7;
-        console.log("bass gain set to " + bassFilter.gain.value);
+  setGainOfSlider(key,value){
+    var val = parseFloat(value);
+    const filter = this.mapSlider.get(key);
+    if(filter !== undefined)
+      filter.gain.value = val;
+  }
 
-        // update output labels
-        //var output = document.querySelector("#bassFreq");
-        //output.value = parseFloat(sliderVal).toFixed(1);
+  changeBassFilterValue(sliderVal) {
+    var value = parseFloat(sliderVal);
+    const bass = this.bassFilter;
+    if (bass !== undefined)
+      bass.gain.value = (value-10) * 7;
+    var knob = this.shadowRoot.querySelector("#bass");
+    knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+  }
 
-        // refresh slider state
-        //var slider = document.querySelector("#bassFreqSlider");
-        //slider.value = parseFloat(sliderVal).toFixed(1);
+  changeTrebleFilterValue(sliderVal) {
+    var value = parseFloat(sliderVal);
+    const treble = this.trebleFilter;
+    if (treble !== undefined)
+      treble.gain.value = (value-10) * 10;
+    var knob = this.shadowRoot.querySelector("#treble");
+    knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+  }
 
-        // refresh knob state
-        //sliderVal = value / 7 + 10;
-        var knob = document.querySelector("#Knob4");
-        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
-    }
+  changePresenceFilterValue(sliderVal) {
+    var value = parseFloat(sliderVal);
+    const presence = this.presenceFilter;
+    if (presence !== undefined)
+      presence.gain.value = (value-5) * 2;
+    var knob = this.shadowRoot.querySelector("#presence");
+    knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+  }
 
-    function changeTrebleFilterValue(sliderVal) {
-        // sliderVal is in [0, 10]
-        var value = parseFloat(sliderVal);
-        trebleFilter.gain.value = (value-10) * 10;
-
-        // update output labels
-        //var output = document.querySelector("#trebleFreq");
-        //output.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh slider state
-        //var slider = document.querySelector("#trebleFreqSlider");
-        //slider.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh knob state
-        //sliderVal = value /10 + 10;
-        var knob = document.querySelector("#Knob6");
-        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
-    }
-
-    function changePresenceFilterValue(sliderVal) {
-        // sliderVal is in [0, 10]
-        var value = parseFloat(sliderVal);
-        presenceFilter.gain.value = (value-5) * 2;
-        //console.log("set presence freq to " + presenceFilter.frequency.value)
-
-        // update output labels
-        //var output = document.querySelector("#presenceFreq");
-        //output.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh slider state
-        //var slider = document.querySelector("#presenceFreqSlider");
-        //slider.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh knob state
-        var knob = document.querySelector("#Knob8");
-        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
-    }
-
-    function changeReverbGain(sliderVal) {
-        // slider val in [0, 10] range
-        // adjust to [0, 1]
-        var value = parseFloat(sliderVal) / 10;
-        reverb.setGain(value);
-
-        // update output labels
-        //var output = document.querySelector("#reverbGainOutput");
-        //output.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh slider state
-        //var slider = document.querySelector("#convolverSlider");
-        //slider.value = parseFloat(sliderVal).toFixed(1);
-
-        // refresh knob state
-        var knob = document.querySelector("#Knob7");
-        knob.setValue(parseFloat(sliderVal).toFixed(1), false);
-    }
-
-    function changeReverbImpulse(name) {
-        reverb.loadImpulseByName(name);
-    }
-  */
+  changeMidFilterValue(sliderVal) {
+    var value = parseFloat(sliderVal);
+    const mid = this.midFilter;
+    if (mid !== undefined)
+      mid.gain.value = (value-5) * 4;
+    var knob = this.shadowRoot.querySelector("#mid");
+    knob.setValue(parseFloat(sliderVal).toFixed(1), false);
+}
 
 }
 customElements.define("my-player", MyPlayer);
